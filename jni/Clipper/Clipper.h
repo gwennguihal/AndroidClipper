@@ -14,7 +14,7 @@ extern "C" {
  * Signature: ([II[IIIII)V
  */
 JNIEXPORT jobjectArray JNICALL Java_fr_myrddin_clipper_Clipper_jniClipPolygon
-  (JNIEnv *, jobject, jintArray, jintArray, jint, jint, jint);
+  (JNIEnv *, jobject, jdoubleArray, jdoubleArray, jint, jint, jint);
 
 #ifdef __cplusplus
 }

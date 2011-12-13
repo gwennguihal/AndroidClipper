@@ -1,5 +1,7 @@
 package fr.myrddin.clipper;
 
+import android.util.Log;
+
 public class Clipper
 {
 	public static final int INTERSECTION = 0;
@@ -15,15 +17,15 @@ public class Clipper
 		System.loadLibrary("Clipper");
 	}
 
-	public void clipPolygon(int[] subjectPolygon, int[] clipPolygon, int clipType, int subjectFillType, int clipFillType)
+	public void clipPolygon(double[] subjectPolygon, double[] clipPolygon, int clipType, int subjectFillType, int clipFillType)
 	{
 		jniClipPolygon(subjectPolygon, clipPolygon, clipType, subjectFillType, clipFillType);
 	}
 
-	public int[][] clipPolygon(int[] subjectPolygon, int[] clipPolygon, int clipType)
+	public double[][] clipPolygon(double[] subjectPolygon, double[] clipPolygon, int clipType)
 	{
 		return jniClipPolygon(subjectPolygon, clipPolygon, clipType, EVEN_ODD, EVEN_ODD);
 	}
 
-	private native int[][] jniClipPolygon(int[] subjectPolygon, int[] clipPolygon, int clipType, int subjectFillType, int clipFillType);
+	private native double[][] jniClipPolygon(double[] subjectPolygon, double[] clipPolygon, int clipType, int subjectFillType, int clipFillType);
 }
