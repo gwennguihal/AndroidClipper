@@ -16,12 +16,12 @@ public class Jni_clipperActivity extends Activity {
         double[] sp = {325,272,118,272,118,98,325,98};
         double[] cp = {154,146,274,146,274,231};
         
-        boolean s = clipper.addSubject(sp);
-        boolean c = clipper.addClip(cp);
+        clipper.addSubject(sp);
+        // add more subjects here
+        clipper.addClip(cp);
+        // add more clips here
         
         double[][] polygons = clipper.execute(Clipper.DIFFERENCE);
-        
-        Log.e("","" + polygons.length + " " + c + " " + s);
         
         for (int i = 0; i < polygons.length; i++) {
         	double[] polygon = polygons[i];
@@ -30,6 +30,8 @@ public class Jni_clipperActivity extends Activity {
             }
         	Log.e("", "----" );
         }
+        
+        clipper.dispose();
 
     }
 }

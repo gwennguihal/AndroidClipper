@@ -9,7 +9,7 @@ Doesn't work with release 4.6
 
 * [Clipper Homepage](http://angusj.com/delphi/clipper.php)
 
-## Usage
+## Usage 1 (simple)
 
 	package fr.myrddin.clipper;
 	
@@ -29,6 +29,32 @@ Doesn't work with release 4.6
         }
     	Log.e("", "----" );
     }
+    
+## Usage 2
+
+	package fr.myrddin.clipper;
+	
+	Clipper clipper = new Clipper();
+        
+    double[] sp = {325,272,118,272,118,98,325,98};
+    double[] cp = {154,146,274,146,274,231};
+    
+    clipper.addSubject(sp);
+    // add more subjects here
+    clipper.addClip(cp);
+    // add more clips here
+    
+    double[][] polygons = clipper.execute(Clipper.DIFFERENCE);
+    
+    for (int i = 0; i < polygons.length; i++) {
+    	double[] polygon = polygons[i];
+    	for (int j = 0; j < polygon.length; j++) {
+    		Log.e("", "" + polygon[j] );
+        }
+    	Log.e("", "----" );
+    }
+    
+    clipper.dispose();
 
 ## License
 
