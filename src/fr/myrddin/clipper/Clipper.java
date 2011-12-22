@@ -1,6 +1,5 @@
 package fr.myrddin.clipper;
 
-import android.util.Log;
 
 public class Clipper
 {
@@ -16,10 +15,32 @@ public class Clipper
 	{
 		System.loadLibrary("Clipper");
 	}
-
-	public void clipPolygon(double[] subjectPolygon, double[] clipPolygon, int clipType, int subjectFillType, int clipFillType)
+	
+	 private final long addr;
+	
+	public Clipper()
 	{
-		jniClipPolygon(subjectPolygon, clipPolygon, clipType, subjectFillType, clipFillType);
+		addr = jniNewClipper();
+	}
+	
+	public void dispose()
+	{
+		jniDispose(addr);
+	}
+	
+	public boolean addSubject(double[] subjectPolygon)
+	{
+		return jniAddSubject(addr,subjectPolygon);
+	}
+	
+	public boolean addClip(double[] clipPolygon)
+	{
+		return jniAddClip(addr,clipPolygon);
+	}
+	
+	public double[][] execute(int clipType)
+	{
+		return jniExecute(addr,clipType, EVEN_ODD, EVEN_ODD);
 	}
 
 	public double[][] clipPolygon(double[] subjectPolygon, double[] clipPolygon, int clipType)
@@ -27,5 +48,10 @@ public class Clipper
 		return jniClipPolygon(subjectPolygon, clipPolygon, clipType, EVEN_ODD, EVEN_ODD);
 	}
 
+	private native long jniNewClipper();
+	private native void jniDispose(long addr);
+	private native boolean jniAddSubject(long addr, double[] subjectPolygon);
+	private native boolean jniAddClip(long addr, double[] clipPolygon);
+	private native double[][] jniExecute(long addr, int clipType, int subjectFillType, int clipFillType);
 	private native double[][] jniClipPolygon(double[] subjectPolygon, double[] clipPolygon, int clipType, int subjectFillType, int clipFillType);
 }

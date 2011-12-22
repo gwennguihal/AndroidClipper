@@ -15,6 +15,21 @@ extern "C" {
  */
 JNIEXPORT jobjectArray JNICALL Java_fr_myrddin_clipper_Clipper_jniClipPolygon
   (JNIEnv *, jobject, jdoubleArray, jdoubleArray, jint, jint, jint);
+  
+JNIEXPORT jobjectArray JNICALL Java_fr_myrddin_clipper_Clipper_jniExecute
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
+  
+JNIEXPORT jboolean JNICALL Java_fr_myrddin_clipper_Clipper_jniAddSubject
+  (JNIEnv *, jobject, jlong, jdoubleArray);
+  
+JNIEXPORT jboolean JNICALL Java_fr_myrddin_clipper_Clipper_jniAddClip
+  (JNIEnv *, jobject, jlong, jdoubleArray);
+  
+JNIEXPORT jlong JNICALL Java_fr_myrddin_clipper_Clipper_jniNewClipper
+  (JNIEnv *, jobject);
+  
+JNIEXPORT void JNICALL Java_fr_myrddin_clipper_Clipper_jniDispose
+  (JNIEnv *, jobject, jlong);
 
 #ifdef __cplusplus
 }

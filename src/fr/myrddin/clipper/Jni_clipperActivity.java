@@ -16,7 +16,12 @@ public class Jni_clipperActivity extends Activity {
         double[] sp = {325,272,118,272,118,98,325,98};
         double[] cp = {154,146,274,146,274,231};
         
-        double[][] polygons = clipper.clipPolygon(sp, cp, Clipper.DIFFERENCE);
+        boolean s = clipper.addSubject(sp);
+        boolean c = clipper.addClip(cp);
+        
+        double[][] polygons = clipper.execute(Clipper.DIFFERENCE);
+        
+        Log.e("","" + polygons.length + " " + c + " " + s);
         
         for (int i = 0; i < polygons.length; i++) {
         	double[] polygon = polygons[i];
